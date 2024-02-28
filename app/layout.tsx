@@ -18,15 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`flex flex-col ${inter.className} h-screen m-0`}
-      >
+      <body className={`flex flex-col ${inter.className} h-screen m-0`}>
         <PageHeader />
         <div className="flex flex-grow">
           <LeftNavigation />
-          <div className="flex-grow">
-            {children}
-          </div>
+          <div className="flex-grow">{children}</div>
         </div>
       </body>
     </html>
