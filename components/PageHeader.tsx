@@ -1,8 +1,11 @@
 import Image from 'next/image';
 import Icon from '../public/icon.png';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { getServerSession } from 'next-auth';
 
-export default function PageHeader() {
+export default async function PageHeader() {
+  const session = await getServerSession();
+
   return (
     <main className="w-full" style={{ height: '10%' }}>
       <div className="flex w-full h-full justify-between">
@@ -21,12 +24,12 @@ export default function PageHeader() {
           {/* container*/}
           <div className="flex w-full h-full items-center justify-center">
             <Avatar>
-              <AvatarImage src="https://static.vecteezy.com/system/resources/previews/009/952/572/non_2x/male-profile-picture-vector.jpg" />
+              <AvatarImage src={session?.user?.image ?? ''} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div className="flex flex-col justify-center w-40 m-4 h-full">
               <h3 className="text-lg font-semibold font-sans antialiased">
-                Nome Sobrenome
+                {session?.user?.name ?? 'Nome Sobrenome'}
               </h3>
               <p className="font-sans antialiased font-medium text-gray-400">
                 Função
