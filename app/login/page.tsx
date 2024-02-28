@@ -9,8 +9,8 @@ export default function Home() {
     <main className="flex flex-grow flex-col items-center justify-center bg-gray-100 h-full w-full">
       <div>
         <h1 className="text-center">oi</h1>
-        <Button onClick={() => signIn('github', { callbackUrl: '/' })}>
-          Login com GitHub
+        <Button onClick={() => signIn('google, github', { callbackUrl: '/' })}>
+          Login
         </Button>
       </div>
     </main>
