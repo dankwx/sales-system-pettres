@@ -24,7 +24,10 @@ export default async function PageHeader() {
           {/* container*/}
           <div className="flex w-full h-full items-center justify-center">
             <Avatar>
-              <AvatarImage src={session?.user?.image ?? ''} />
+              <AvatarImage
+                src={session?.user?.image ?? ''}
+                referrerPolicy="no-referrer"
+              />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div className="flex flex-col justify-center w-40 m-4 h-full">
@@ -32,7 +35,9 @@ export default async function PageHeader() {
                 {session?.user?.name ?? 'Nome Sobrenome'}
               </h3>
               <p className="font-sans antialiased font-medium text-gray-400">
-                Função
+                {session?.user?.email == 'danielpettres@gmail.com'
+                  ? 'Administrador'
+                  : 'Usuário'}
               </p>
             </div>
           </div>
