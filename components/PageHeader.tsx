@@ -15,9 +15,11 @@ export default async function PageHeader() {
             <div className="flex w-2/6 h-2/3 items-center justify-center rounded-md">
               <Image src={Icon} width={30} height={30} alt="paquimetro" />
             </div>
-            <h2 className="text-2xl font-sans antialiased m-3 font-bold text-slate-700 ">
-              Pettres
-            </h2>
+            <a href="/">
+              <h2 className="text-2xl font-sans antialiased m-3 font-bold text-slate-700 ">
+                Pettres
+              </h2>
+            </a>
           </div>
         </div>
         <div className="flex min-w-64 ">
