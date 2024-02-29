@@ -13,6 +13,7 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
     cliente: '',
     servico: '',
     valor: 0,
+    data: new Date(), // Adiciona o campo data com o valor atual
   });
 
   const handleInputChange = (
@@ -21,7 +22,7 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
     const { name, value } = e.target;
     setClientData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: name === 'data' ? new Date(value) : value, // Converte para timestamp se o campo for 'data'
     }));
   };
 
@@ -37,6 +38,7 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
         cliente: '',
         servico: '',
         valor: 0,
+        data: new Date(),
       });
       onClientAdded();
       console.log('Cliente adicionado com ID:', docRef.id);

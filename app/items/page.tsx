@@ -4,49 +4,53 @@ import { Payment, columns } from "./columns"
 import { DataTable } from "./data-table"
 import { ClientForm } from './ClientForm';
 import { db } from '../firebaseConfig';
-import { collection, getDocs, DocumentData } from 'firebase/firestore';
+import { collection, getDocs, DocumentData, query, orderBy, Timestamp } from 'firebase/firestore';
 import { useEffect, useState } from "react";
+import { format } from 'date-fns';
 
 
 export default function DemoPage() {
-    const [data, setData] = useState<Payment[]>([]);
-  
-    useEffect(() => {
-      fetchData(); // Busca os dados quando a página é carregada
-    }, []);
-  
-    const fetchData = async () => {
-      try {
-        const newData = await getDataFromFirebase();
-        setData(newData);
-      } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-      }
-    };
-  
-    const handleClientAdded = () => {
-      fetchData(); // Atualiza os dados após adicionar um cliente
-    };
-  
-    return (
-      <div className="container mx-auto py-10">
-        <ClientForm onClientAdded={handleClientAdded} />
-        <DataTable columns={columns} data={data} />
-      </div>
-    );
-  }
-  
-  async function getDataFromFirebase(): Promise<Payment[]> {
+  const [data, setData] = useState<Payment[]>([]);
+
+  useEffect(() => {
+    fetchData(); // Busca os dados quando a página é carregada
+  }, []);
+
+  const fetchData = async () => {
     try {
-      const data = await getDocs(collection(db, 'registro'));
-      const registroArray: Payment[] = [];
-      data.forEach((doc) => {
-        const { cliente, servico, valor } = doc.data() as DocumentData;
-        registroArray.push({ id: doc.id, cliente, servico, preco: valor });
-      });
-      return registroArray;
+      const newData = await getDataFromFirebase();
+      setData(newData);
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
-      return [];
     }
+  };
+
+  const handleClientAdded = () => {
+    fetchData(); // Atualiza os dados após adicionar um cliente
+  };
+
+  return (
+    <div className="container mx-auto py-10">
+      <ClientForm onClientAdded={handleClientAdded} />
+      <DataTable columns={columns} data={data} />
+    </div>
+  );
+}
+
+async function getDataFromFirebase(): Promise<Payment[]> {
+  try {
+    const data = await getDocs(query(collection(db, 'registro'), orderBy('data', 'desc')));
+    const registroArray: Payment[] = [];
+    data.forEach((doc) => {
+      const { cliente, servico, valor, data } = doc.data() as { cliente: string, servico: string, valor: number, data: Timestamp };
+      registroArray.push({ id: doc.id, cliente, servico, preco: valor, data });
+    });
+    return registroArray.map(payment => ({
+      ...payment,
+      data: format(payment.data.toDate(), 'dd/MM/yyyy HH:mm:ss'),
+    })) as unknown as Payment[]; // Garante que o tipo de retorno seja Payment[]
+  } catch (error) {
+    console.error('Erro ao buscar dados:', error);
+    return [];
   }
+}
