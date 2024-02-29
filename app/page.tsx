@@ -1,4 +1,3 @@
-import ButtonLogout from '@/components/ButtonLogout';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 
@@ -13,7 +12,6 @@ export default async function Home() {
       <div>
         <h1 className="text-center">oi</h1>
         <p>pagina inicial, só pode vela com login</p>
-        <ButtonLogout />
       </div>
     </main>
   );
