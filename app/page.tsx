@@ -1,8 +1,12 @@
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
+import { app, database } from '../fireBaseConfig';
+import { collection, addDoc } from 'firebase/firestore';
 
 export default async function Home() {
   const session = await getServerSession();
+
+  // https://www.freecodecamp.org/news/nextjs-firebase-tutorial-build-an-evernote-clone/
 
   if (!session) {
     redirect('/login');
