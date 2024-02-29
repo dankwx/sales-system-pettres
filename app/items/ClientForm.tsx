@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { db } from '../firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
+import { Button } from '@/components/ui/button';
 
 interface ClientFormProps {
   onClientAdded: () => void;
@@ -11,10 +12,12 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
   const [clientData, setClientData] = useState({
     cliente: '',
     servico: '',
-    preco: 0,
+    valor: 0,
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
     setClientData((prevData) => ({
       ...prevData,
@@ -33,7 +36,7 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
       setClientData({
         cliente: '',
         servico: '',
-        preco: 0,
+        valor: 0,
       });
       onClientAdded();
       console.log('Cliente adicionado com ID:', docRef.id);
@@ -68,15 +71,13 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
         Preço:
         <input
           type="number"
-          name="preco"
-          value={clientData.preco}
+          name="valor"
+          value={clientData.valor}
           onChange={handleInputChange}
           required
         />
       </label>
-      <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
-        Adicionar Cliente
-      </button>
+      <Button type="submit">Adicionar</Button>
     </form>
   );
 }
