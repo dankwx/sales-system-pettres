@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 
-export default function LoginPage() {
+export default async function LoginPage() {
   return (
     <main className="flex flex-col items-center justify-center bg-gray-100 h-full w-full">
       <div className="flex items-center justify-center ">
