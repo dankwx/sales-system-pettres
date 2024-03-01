@@ -9,6 +9,10 @@ const handler = NextAuth({
   session: {
     strategy: 'jwt',
   },
+
+  pages: {
+    signIn: '/login',
+  },
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID ?? '',
@@ -31,7 +35,7 @@ const handler = NextAuth({
 
         const passwordCorrect = await compare(
           credentials?.password || '',
-          user.password
+          user.password,
         );
 
         console.log({ passwordCorrect });
