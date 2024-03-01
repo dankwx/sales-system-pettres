@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth';
 import PageHeader from '@/components/PageHeader';
 import LeftNavigation from '@/components/LeftNavigation';
 import './globals.css';
-import { Link } from 'lucide-react';
+import Link from 'next/link';
 import Logout from './logout';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   const session = await getServerSession();
   return (
     <html lang="pt-br">
@@ -28,8 +28,12 @@ export default async function RootLayout({
           <LeftNavigation />
           <div className="flex-grow">
             <nav>
-              {!session && <Logout />}
-              {!session && <Link href="/login">Login</Link>}
+              {!!session && <Logout />}
+              {!session && (
+                <Link href="/login">
+                  <span>loginn</span>
+                </Link>
+              )}
             </nav>
             {children}
           </div>
