@@ -1,7 +1,12 @@
-import { Button } from '@/components/ui/button';
+import { getServerSession } from 'next-auth';
 import Form from './form';
+import { redirect } from 'next/navigation';
 
 export default async function LoginPage() {
+  const session = await getServerSession();
+  if (session) {
+    redirect("/")
+  }
   return (
     <main className="flex flex-col items-center justify-center bg-gray-100 h-full w-full">
       <div className="flex items-center justify-center ">
