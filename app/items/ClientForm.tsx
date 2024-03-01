@@ -51,7 +51,7 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex  flex-col w-fit mt-0 border-solid border-slate-500 border-1 m-0"
+      className="flex  flex-col w-fit mb-8 border-solid border-slate-500 border-1 m-0"
     ><h1 className='scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0'>Novo Serviço</h1>
       <div className="flex">
         <Input
@@ -61,6 +61,7 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
           placeholder="Cliente"
           value={clientData.cliente}
           onChange={handleInputChange}
+          required
         />
 
         <Input
@@ -82,9 +83,10 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
           onChange={handleInputChange}
           required
         />
+        <Button className='mt-0 w-32' type="submit">Adicionar</Button>
       </div>
 
-      <Button className='mt-4 w-32' type="submit">Adicionar</Button>
+
     </form>
   );
 }

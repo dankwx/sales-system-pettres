@@ -30,7 +30,7 @@ export default function DemoPage() {
   };
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-4">
       <ClientForm onClientAdded={handleClientAdded} />
       <DataTable columns={columns} data={data} />
     </div>
