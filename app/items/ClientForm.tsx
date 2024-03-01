@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { db } from '../firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
+import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
 interface ClientFormProps {
@@ -48,38 +49,42 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-4">
-      <label className="block mb-2">
-        Cliente:
-        <input
+    <form
+      onSubmit={handleSubmit}
+      className="flex  flex-col w-fit mt-0 border-solid border-slate-500 border-1 m-0"
+    ><h1 className='scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0'>Novo Serviço</h1>
+      <div className="flex">
+        <Input
+          className="mr-2"
           type="text"
           name="cliente"
+          placeholder="Cliente"
           value={clientData.cliente}
           onChange={handleInputChange}
-          required
         />
-      </label>
-      <label className="block mb-2">
-        Serviço:
-        <input
+
+        <Input
+          className="mr-2"
           type="text"
           name="servico"
+          placeholder="Serviço"
           value={clientData.servico}
           onChange={handleInputChange}
           required
         />
-      </label>
-      <label className="block mb-2">
-        Preço:
-        <input
+
+        <Input
+          className="mr-2"
           type="number"
           name="valor"
+          placeholder="0"
           value={clientData.valor}
           onChange={handleInputChange}
           required
         />
-      </label>
-      <Button type="submit">Adicionar</Button>
+      </div>
+
+      <Button className='mt-4 w-32' type="submit">Adicionar</Button>
     </form>
   );
 }
