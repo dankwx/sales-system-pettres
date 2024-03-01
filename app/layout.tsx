@@ -28,7 +28,6 @@ export default async function RootLayout({
           <LeftNavigation />
           <div className="flex-grow">
             <nav>
-              {!!session && <Logout />}
               {!session && (
                 <Link href="/login">
                   <span>loginn</span>

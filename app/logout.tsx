@@ -4,12 +4,12 @@ import { signOut } from 'next-auth/react';
 
 export default function Logout() {
   return (
-    <span
+    <p className='m-3 font-semibold text-lg cursor-pointer'
       onClick={() => {
         signOut();
       }}
     >
       Logout
-    </span>
+    </p>
   );
 }
