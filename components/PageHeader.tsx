@@ -29,6 +29,7 @@ export default async function PageHeader() {
         <div className='flex flex-col align-middle justify-center'>
           <p className="text-3xl font-semibold mt-4">Tornearia Pettres</p>
           <p className='text-center'>{saoPauloTime}</p>
+          <hr className='mt-2 border-t-2 border-gray-500'/>
           </div>
 
         <div className="flex min-w-64 ">
