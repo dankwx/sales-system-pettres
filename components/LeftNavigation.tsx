@@ -18,8 +18,8 @@ export default async function LeftNavigation() {
             height={25}
             alt="dashboardIcon"
           />
-          <a href="/dashboard">
-            <p className="m-3 font-semibold text-lg">Dashboard</p>
+          <a href="/">
+            <p className="m-3 font-semibold text-lg">Início</p>
           </a>
         </div>
         <div className="flex w-fit items-center">

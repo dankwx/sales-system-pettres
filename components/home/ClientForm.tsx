@@ -52,7 +52,7 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
     <form
       onSubmit={handleSubmit}
       className="flex  flex-col w-fit mb-8 border-solid border-slate-500 border-1 m-0"
-    ><h1 className='scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0'>Novo Serviço</h1>
+    ><h1 className='scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mb-6'>Novo Serviço</h1>
       <div className="flex">
         <Input
           className="mr-2"
