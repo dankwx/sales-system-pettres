@@ -10,7 +10,7 @@ export default async function PageHeader() {
     timeZone: 'America/Sao_Paulo',
     hour: 'numeric',
     minute: 'numeric',
-    hour12: true,
+    hour12: false,
   });
 
   return (
