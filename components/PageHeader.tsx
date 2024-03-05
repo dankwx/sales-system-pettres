@@ -6,6 +6,13 @@ import { getServerSession } from 'next-auth';
 export default async function PageHeader() {
   const session = await getServerSession();
 
+  const saoPauloTime = new Date().toLocaleString('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  });
+
   return (
     <main className="w-full" style={{ height: '10%' }}>
       <div className="flex w-full h-full justify-between align-middle">
@@ -19,7 +26,11 @@ export default async function PageHeader() {
             </a>
           </div>
         </div>
-        <p className="text-3xl font-semibold mt-4">Tornearia Pettres</p>
+        <div className='flex flex-col align-middle justify-center'>
+          <p className="text-3xl font-semibold mt-4">Tornearia Pettres</p>
+          <p className='text-center'>{saoPauloTime}</p>
+          </div>
+
         <div className="flex min-w-64 ">
           {/* container*/}
 
