@@ -33,7 +33,7 @@ export default async function PageHeader() {
             </Avatar>
             <div className="flex flex-col justify-center w-40 m-4 h-full">
               <h3 className="text-lg font-semibold font-sans antialiased">
-                {session?.user?.name ?? 'Nome Sobrenome'}
+                {session?.user?.email ?? 'Usuário'}
               </h3>
               <p className="font-sans antialiased font-medium text-gray-400">
                 {session?.user?.email == 'danielpettres@gmail.com'
