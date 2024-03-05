@@ -13,7 +13,7 @@ export default async function LoginPage() {
       <div className="bg-white p-8 rounded shadow-md w-96">
         <h1 className="text-2xl font-bold mb-4">Login</h1>
 
-        {/* Formulário */}
+        {/* Formulári o */}
         <Form />
       </div>
     </div>
