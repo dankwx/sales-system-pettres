@@ -1,53 +1,56 @@
-'use client';
+"use client"
 
+import { Payment, columns } from "../components/home/columns"
+import { DataTable } from "../components/home/data-table"
+import { ClientForm } from '../components/home/ClientForm';
 import { db } from './firebaseConfig';
-import { collection, getDocs, DocumentData } from 'firebase/firestore';
-import React, { useState, useEffect } from 'react';
+import { collection, getDocs, DocumentData, query, orderBy, Timestamp } from 'firebase/firestore';
+import { useEffect, useState } from "react";
+import { format } from 'date-fns';
 
-interface Registro {
-  cliente: string;
-  servico: string;
-  valor: number;
-}
 
-export default function Home() {
-  const [registroData, setRegistroData] = useState<Registro[]>([]);
+export default function DemoPage() {
+  const [data, setData] = useState<Payment[]>([]);
 
   useEffect(() => {
-    const fetchRegistroData = async () => {
-      try {
-        const data = await getDocs(collection(db, 'registro'));
-        const registroArray: Registro[] = [];
-        data.forEach((doc) => {
-          // Certifique-se de adaptar isso à estrutura real do seu documento
-          const { cliente, servico, valor } = doc.data() as DocumentData;
-          registroArray.push({ cliente, servico, valor });
-        });
-        setRegistroData(registroArray);
-      } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-      }
-    };
+    fetchData(); // Busca os dados quando a página é carregada
+  }, []);
 
-    fetchRegistroData();
-  }, []); // Executar apenas uma vez ao montar o componente
+  const fetchData = async () => {
+    try {
+      const newData = await getDataFromFirebase();
+      setData(newData);
+    } catch (error) {
+      console.error('Erro ao buscar dados:', error);
+    }
+  };
+
+  const handleClientAdded = () => {
+    fetchData(); // Atualiza os dados após adicionar um cliente
+  };
 
   return (
-    <main className="flex flex-grow flex-col items-center justify-center bg-gray-100 h-full w-full">
-      <div>
-        <h1 className="text-center">Registro</h1>
-        <p>Registro de Vendas</p>
-
-        {/* Renderizar os dados recuperados */}
-        <ul>
-          {registroData.map((item, index) => (
-            <li key={index}>
-              Cliente: {item.cliente}, Serviço: {item.servico}, Valor:{' '}
-              {item.valor}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </main>
+    <div className="container mx-auto py-4">
+      <ClientForm onClientAdded={handleClientAdded} />
+      <DataTable columns={columns} data={data} />
+    </div>
   );
+}
+
+async function getDataFromFirebase(): Promise<Payment[]> {
+  try {
+    const data = await getDocs(query(collection(db, 'registro'), orderBy('data', 'desc')));
+    const registroArray: Payment[] = [];
+    data.forEach((doc) => {
+      const { cliente, servico, valor, data } = doc.data() as { cliente: string, servico: string, valor: number, data: Timestamp };
+      registroArray.push({ id: doc.id, cliente, servico, preco: valor, data });
+    });
+    return registroArray.map(payment => ({
+      ...payment,
+      data: format(payment.data.toDate(), 'dd/MM/yyyy HH:mm:ss'),
+    })) as unknown as Payment[]; // Garante que o tipo de retorno seja Payment[]
+  } catch (error) {
+    console.error('Erro ao buscar dados:', error);
+    return [];
+  }
 }

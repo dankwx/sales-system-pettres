@@ -1,6 +1,6 @@
 // ClientForm.tsx
 import { useState } from 'react';
-import { db } from '../firebaseConfig';
+import { db } from '../../app/firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';

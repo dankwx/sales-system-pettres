@@ -3,7 +3,7 @@
 import { Payment, columns } from "./columns"
 import { DataTable } from "./data-table"
 import { ClientForm } from './ClientForm';
-import { db } from '../firebaseConfig';
+import { db } from '../../app/firebaseConfig';
 import { collection, getDocs, DocumentData, query, orderBy, Timestamp } from 'firebase/firestore';
 import { useEffect, useState } from "react";
 import { format } from 'date-fns';
