@@ -23,17 +23,15 @@ export default async function RootLayout({
   return (
     <html lang="pt-br">
       <body className={`flex flex-col ${inter.className} h-screen m-0`}>
-        <PageHeader />
+        {session && (
+          <PageHeader />
+        )}
         <div className="flex flex-grow">
-          <LeftNavigation />
+          {session && (
+            <LeftNavigation />
+          )}
           <div className="flex-grow">
-            <nav>
-              {!session && (
-                <Link href="/login">
-                  <span>loginn</span>
-                </Link>
-              )}
-            </nav>
+
             {children}
           </div>
         </div>
