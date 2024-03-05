@@ -3,6 +3,10 @@
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+
+
 
 export default function Form() {
   const router = useRouter();
@@ -30,7 +34,7 @@ export default function Form() {
         >
           E-mail
         </label>
-        <input
+        <Input
           type="email"
           id="email"
           name="email"
@@ -48,7 +52,7 @@ export default function Form() {
         >
           Senha
         </label>
-        <input
+        <Input
           type="password"
           id="password"
           name="password"
@@ -56,15 +60,11 @@ export default function Form() {
           placeholder="Sua senha"
           required
         />
+
       </div>
 
       {/* Botão de Entrar */}
-      <button
-        type="submit"
-        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-300"
-      >
-        Login
-      </button>
+      <Button type='submit' className="w-full">Entrar</Button>
     </form>
   );
 }
