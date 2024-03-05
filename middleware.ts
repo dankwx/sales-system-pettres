@@ -1,3 +1,3 @@
 export { default } from 'next-auth/middleware';
 
-export const config = { matcher: ['/items', "/dashboard"] };
+export const config = { matcher: ['/', "/dashboard"] };
