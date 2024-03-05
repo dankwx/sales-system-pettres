@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Icon from '../public/icon.png';
+import Icon from '../public/repair.png';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { getServerSession } from 'next-auth';
 
@@ -8,22 +8,21 @@ export default async function PageHeader() {
 
   return (
     <main className="w-full" style={{ height: '10%' }}>
-      <div className="flex w-full h-full justify-between">
-        <div className="flex w-full">
+      <div className="flex w-full h-full justify-between align-middle">
+        <div className="flex">
           {/* container*/}
           <div className="flex min-w-48 h-full justify-center items-center border-solid border-r-2 border-gray-100">
-            <div className="flex w-2/6 h-2/3 items-center justify-center rounded-md">
+            <div className="flex w-2/6 h-14 items-center justify-center rounded-md bg-gray-800">
               <Image src={Icon} width={30} height={30} alt="paquimetro" />
             </div>
             <a href="/">
-              <h2 className="text-2xl font-sans antialiased m-3 font-bold text-slate-700 ">
-                Pettres
-              </h2>
             </a>
           </div>
         </div>
+        <p className="text-3xl font-semibold mt-4">Tornearia Pettres</p>
         <div className="flex min-w-64 ">
           {/* container*/}
+
           <div className="flex w-full h-full items-center justify-center">
             <Avatar>
               <AvatarImage
