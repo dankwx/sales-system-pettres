@@ -15,6 +15,7 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
     servico: '',
     valor: 0,
     data: new Date(), // Adiciona o campo data com o valor atual
+    descricao: '',
   });
 
   const handleInputChange = (
@@ -40,6 +41,7 @@ export function ClientForm({ onClientAdded }: ClientFormProps) {
         servico: '',
         valor: 0,
         data: new Date(),
+        descricao: '',
       });
       onClientAdded();
       console.log('Cliente adicionado com ID:', docRef.id);
