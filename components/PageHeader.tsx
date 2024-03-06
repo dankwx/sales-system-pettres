@@ -48,7 +48,7 @@ export default async function PageHeader() {
                 {session?.user?.email ?? 'Usuário'}
               </h3>
               <p className="font-sans antialiased font-medium text-gray-400">
-                {session?.user?.email == 'danielpettres@gmail.com'
+                {session?.user?.email == 'admin@pettres.com'
                   ? 'Administrador'
                   : 'Usuário'}
               </p>
